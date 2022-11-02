@@ -1,5 +1,6 @@
 package com.grechi.drugstoreapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.data.annotation.Immutable;
 
@@ -14,11 +15,12 @@ public class Client {
 
     @Id
     @Column(name = "idcliente")
+    @SequenceGenerator(name = "client_generator", sequenceName = "idcliente_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_generator")
-    @SequenceGenerator(name = "client_generator", sequenceName = "idcliente_seq")
     private Integer idCliente;
 
     @Column(name = "nome")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String nome;
 
     @Column(name = "sexo")
